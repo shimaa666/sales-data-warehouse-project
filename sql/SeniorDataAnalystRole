@@ -1,0 +1,16 @@
+CREATE ROLE SeniorDataAnalyst;
+
+GRANT SELECT ON gold.dim_customers TO SeniorDataAnalyst;
+GRANT SELECT ON gold.dim_products TO SeniorDataAnalyst;
+GRANT SELECT ON gold.fact_sales TO SeniorDataAnalyst;
+
+CREATE LOGIN ShimaaLogin WITH PASSWORD = 'sh123456';
+CREATE LOGIN OtherLogin WITH PASSWORD = 'ot123456';
+
+USE Sales_DHW;
+
+CREATE USER ShimaaUser FOR LOGIN ShimaaLogin;
+CREATE USER Other_User FOR LOGIN OtherLogin;
+
+
+ALTER ROLE SeniorDataAnalyst ADD MEMBER ShimaaUser;
